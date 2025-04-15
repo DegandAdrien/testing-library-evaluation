@@ -45,4 +45,6 @@ test('Premier scénario : cas passant', async () => {
 
   expect(screen.getByText(/Go Back/i)).toBeInTheDocument()
   expect(screen.getByRole('button', {name: 'Confirm'})).toBeInTheDocument()
+
+  userEvent.click(screen.getByRole('button', {name: 'Confirm'}))
 })
