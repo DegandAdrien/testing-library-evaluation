@@ -21,4 +21,8 @@ test('Premier scénario : cas passant', async () => {
 
   expect(screen.getByText(/Next/i)).toBeInTheDocument()
   userEvent.click(screen.getByText(/Next/i))
+
+  await waitFor(() => {
+    expect(screen.getByText(/Page 2/i)).toBeInTheDocument()
+  })
 })
