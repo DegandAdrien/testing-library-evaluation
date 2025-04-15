@@ -135,4 +135,10 @@ test('Second scénario : cas non passant', async () => {
 
   expect(screen.getByText(/Go Home/i)).toBeInTheDocument()
   expect(screen.getByText(/Try again/i)).toBeInTheDocument()
+
+  userEvent.click(screen.getByText(/Try again/i))
+
+  await waitFor(() => {
+    expect(screen.getByText(/Page 1/i)).toBeInTheDocument()
+  })
 })
