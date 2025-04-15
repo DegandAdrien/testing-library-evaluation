@@ -13,4 +13,7 @@ test('Premier scénario : cas passant', async () => {
   await waitFor(() => {
     expect(screen.getByText(/Page 1/i)).toBeInTheDocument()
   })
+
+  expect(screen.getByText(/Go Home/i)).toBeInTheDocument()
+  expect(screen.getByLabelText(/Favorite Food/i)).toBeInTheDocument()
 })
