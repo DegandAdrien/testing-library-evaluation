@@ -128,4 +128,8 @@ test('Second scénario : cas non passant', async () => {
   await waitFor(() => {
     expect(screen.getByText(/Oh no. There was an error./i)).toBeInTheDocument()
   })
+
+  expect(
+    screen.getByText(/les champs food et drink sont obligatoires/i),
+  ).toBeInTheDocument()
 })
