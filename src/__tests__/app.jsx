@@ -33,4 +33,8 @@ test('Premier scénario : cas passant', async () => {
 
   expect(screen.getByText(/Review/i)).toBeInTheDocument()
   userEvent.click(screen.getByText(/Review/i))
+
+  await waitFor(() => {
+    expect(screen.getByRole('heading', {name: 'Confirm'})).toBeInTheDocument()
+  })
 })
