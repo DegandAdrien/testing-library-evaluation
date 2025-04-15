@@ -37,4 +37,5 @@ test('Premier scénario : cas passant', async () => {
   await waitFor(() => {
     expect(screen.getByRole('heading', {name: 'Confirm'})).toBeInTheDocument()
   })
+  expect(screen.getByText(/Please confirm your choices/i)).toBeInTheDocument()
 })
