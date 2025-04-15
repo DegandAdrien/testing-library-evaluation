@@ -30,4 +30,7 @@ test('Premier scénario : cas passant', async () => {
   expect(screen.getByLabelText(/Favorite Drink/i)).toBeInTheDocument()
 
   userEvent.type(screen.getByLabelText(/Favorite Drink/i), 'Bière')
+
+  expect(screen.getByText(/Review/i)).toBeInTheDocument()
+  userEvent.click(screen.getByText(/Review/i))
 })
