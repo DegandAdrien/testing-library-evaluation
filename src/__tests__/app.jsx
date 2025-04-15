@@ -70,4 +70,7 @@ test('Premier scénario : cas passant', async () => {
   await waitFor(() => {
     expect(screen.getByText(/Congrats. You did it./i)).toBeInTheDocument()
   })
+
+  expect(screen.getByText(/Go home/i)).toBeInTheDocument()
+  userEvent.click(screen.getByText(/Go home/i))
 })
