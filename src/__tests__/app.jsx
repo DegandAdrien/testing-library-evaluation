@@ -2,6 +2,24 @@ import React from 'react'
 import {render, screen, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../app'
+import {server} from '../../tests/server'
+import {rest} from 'msw'
+
+beforeEach(() => {
+  server.use(
+    rest.post('/form', (req, res, ctx) => {
+      if (!req.body.food || !req.body.drink) {
+        return res(
+          ctx.status(400),
+          ctx.json({
+            message: 'les champs food et drink sont obligatoires',
+          }),
+        )
+      }
+      return res(ctx.status(200), ctx.json({data: req.body}))
+    }),
+  )
+})
 
 test('Premier scénario : cas passant', async () => {
   render(<App />)
@@ -44,7 +62,12 @@ test('Premier scénario : cas passant', async () => {
   expect(screen.getByLabelText('Favorite Drink')).toHaveTextContent('Bière')
 
   expect(screen.getByText(/Go Back/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', {name: 'Confirm'})).toBeInTheDocument()
+  const confirmButton = screen.getByRole('button', {name: 'Confirm'})
+  expect(confirmButton).toBeInTheDocument()
 
-  userEvent.click(screen.getByRole('button', {name: 'Confirm'}))
+  userEvent.click(confirmButton)
+
+  await waitFor(() => {
+    expect(screen.getByText(/Congrats. You did it./i)).toBeInTheDocument()
+  })
 })
