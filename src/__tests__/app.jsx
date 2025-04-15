@@ -132,4 +132,7 @@ test('Second scénario : cas non passant', async () => {
   expect(
     screen.getByText(/les champs food et drink sont obligatoires/i),
   ).toBeInTheDocument()
+
+  expect(screen.getByText(/Go Home/i)).toBeInTheDocument()
+  expect(screen.getByText(/Try again/i)).toBeInTheDocument()
 })
