@@ -42,4 +42,7 @@ test('Premier scénario : cas passant', async () => {
 
   expect(screen.getByLabelText('Favorite Food')).toHaveTextContent('Les pâtes')
   expect(screen.getByLabelText('Favorite Drink')).toHaveTextContent('Bière')
+
+  expect(screen.getByText(/Go Back/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', {name: 'Confirm'})).toBeInTheDocument()
 })
