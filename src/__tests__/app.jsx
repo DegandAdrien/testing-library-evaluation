@@ -124,4 +124,8 @@ test('Second scénario : cas non passant', async () => {
   expect(confirmButton).toBeInTheDocument()
 
   userEvent.click(confirmButton)
+
+  await waitFor(() => {
+    expect(screen.getByText(/Oh no. There was an error./i)).toBeInTheDocument()
+  })
 })
